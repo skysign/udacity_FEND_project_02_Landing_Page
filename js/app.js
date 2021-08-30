@@ -73,29 +73,30 @@ navBar.addEventListener('click', function(event){
     }
 })
 
+function myElementFromPoint(x, y) {
+    return document.elementFromPoint(x, y)
+};
+
 // Set sections as active
-function isShown (el) {
-    var rect     = el.getBoundingClientRect(),
-        vWidth   = window.innerWidth || document.documentElement.clientWidth,
-        vHeight  = window.innerHeight || document.documentElement.clientHeight,
-        efp      = function (x, y) { return document.elementFromPoint(x, y) };
+function isShown (section) {
+    var rectOfSection     = section.getBoundingClientRect();
+    var vWidth   = window.innerWidth || document.documentElement.clientWidth;
+    var vHeight  = window.innerHeight || document.documentElement.clientHeight;
 
-    // Return false if it's not in the viewport
-    if (rect.right < 0 || rect.bottom < 0
-            || rect.left > vWidth || rect.top > vHeight)
+    if (rectOfSection.right < 0
+        || rectOfSection.bottom < 0
+        || rectOfSection.left > vWidth
+        || rectOfSection.top > vHeight) {
         return false;
+    }
 
-    // Return true if any of its four corners are visible
-    return (
-          el.contains(efp(rect.left,  rect.top))
-      ||  el.contains(efp(rect.right, rect.top))
-      ||  el.contains(efp(rect.right, rect.bottom))
-      ||  el.contains(efp(rect.left,  rect.bottom))
-    );
+    return (section.contains(myElementFromPoint(rectOfSection.left,  rectOfSection.top))
+            ||  section.contains(myElementFromPoint(rectOfSection.right, rectOfSection.top))
+            ||  section.contains(myElementFromPoint(rectOfSection.right, rectOfSection.bottom))
+            ||  section.contains(myElementFromPoint(rectOfSection.left,  rectOfSection.bottom)));
 };
 
 function SetSectionAsActive() {
-
     for (let i=0; i < sections.length; i++){
         if (isShown(sections[i])){
             sections[i].classList.add("your-active-class");
