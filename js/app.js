@@ -37,29 +37,17 @@ function buildMenu() {
     const navBarList = document.getElementById('navbar__list')
     navBarList.appendChild(fragment);
 }
-
-
 /**
  * End Helper Functions
  * Begin Main Functions
  *
 */
 
-// build the nav
-
-
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
-
 /**
  * End Main Functions
  * Begin Events
  *
 */
-
 // Build menu
 buildMenu()
 
@@ -73,11 +61,6 @@ navBar.addEventListener('click', function(event){
     }
 })
 
-function myElementFromPoint(x, y) {
-    return document.elementFromPoint(x, y)
-};
-
-// Set sections as active
 function isShown (section) {
     var rectOfSection     = section.getBoundingClientRect();
     var vWidth   = window.innerWidth || document.documentElement.clientWidth;
@@ -90,12 +73,13 @@ function isShown (section) {
         return false;
     }
 
-    return (section.contains(myElementFromPoint(rectOfSection.left,  rectOfSection.top))
-            ||  section.contains(myElementFromPoint(rectOfSection.right, rectOfSection.top))
-            ||  section.contains(myElementFromPoint(rectOfSection.right, rectOfSection.bottom))
-            ||  section.contains(myElementFromPoint(rectOfSection.left,  rectOfSection.bottom)));
+    return (section.contains(document.elementFromPoint(rectOfSection.left,  rectOfSection.top))
+            ||  section.contains(document.elementFromPoint(rectOfSection.right, rectOfSection.top))
+            ||  section.contains(document.elementFromPoint(rectOfSection.right, rectOfSection.bottom))
+            ||  section.contains(document.elementFromPoint(rectOfSection.left,  rectOfSection.bottom)));
 };
 
+// Set sections as active
 function SetSectionAsActive() {
     for (let i=0; i < sections.length; i++){
         if (isShown(sections[i])){
