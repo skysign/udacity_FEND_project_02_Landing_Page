@@ -27,7 +27,6 @@ const fragment = document.createDocumentFragment();
 */
 function buildMenu() {
     for (let i=0; i < sections.length; i++){
-        console.log(i+1);
         const menu = document.createElement('li');
         const name = sections[i].getAttribute('data-nav')
         const id = sections[i].getAttribute('id')
@@ -62,9 +61,9 @@ navBar.addEventListener('click', function(event){
 })
 
 function isShown (section) {
-    var rectOfSection     = section.getBoundingClientRect();
-    var vWidth   = window.innerWidth || document.documentElement.clientWidth;
-    var vHeight  = window.innerHeight || document.documentElement.clientHeight;
+    let rectOfSection   = section.getBoundingClientRect();
+    let vWidth   = window.innerWidth || document.documentElement.clientWidth;
+    let vHeight  = window.innerHeight || document.documentElement.clientHeight;
 
     if (rectOfSection.right < 0
         || rectOfSection.bottom < 0
